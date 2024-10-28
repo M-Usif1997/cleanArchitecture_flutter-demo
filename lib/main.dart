@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'core/app_theme.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,11 +15,11 @@ class MyApp extends StatelessWidget {
       title: 'Posts App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Posts'),
+          title: const Text('Posts'),
         ),
         body: Center(
           child: Container(
-            child: Text('Hello World'),
+            child: const Text('Hello World'),
           ),
         ),
       ),
