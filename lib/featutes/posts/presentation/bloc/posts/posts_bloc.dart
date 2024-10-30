@@ -3,10 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/error/failures.dart';
-import '../../../../core/strings/failures.dart';
-import '../../domain/entities/post.dart';
-import '../../domain/usecases/get_all_posts.dart';
+import '../../../../../core/error/failures.dart';
+import '../../../../../core/strings/failures.dart';
+import '../../../domain/entities/post.dart';
+import '../../../domain/usecases/get_all_posts.dart';
 
 part 'posts_event.dart';
 
