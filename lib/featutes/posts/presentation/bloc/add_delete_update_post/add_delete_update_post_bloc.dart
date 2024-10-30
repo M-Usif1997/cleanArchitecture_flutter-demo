@@ -20,9 +20,10 @@ class AddDeleteUpdatePostBloc
   DeletePostUsecase deletePost;
   UpdatePostUsecase updatePost;
 
-  AddDeleteUpdatePostBloc({required this.addPost,
-    required this.deletePost,
-    required this.updatePost})
+  AddDeleteUpdatePostBloc(
+      {required this.addPost,
+      required this.deletePost,
+      required this.updatePost})
       : super(AddDeleteUpdatePostInitial()) {
     on<AddDeleteUpdatePostEvent>((event, emit) async {
       if (event is AddPostEvent) {
@@ -32,43 +33,31 @@ class AddDeleteUpdatePostBloc
 
         emit(_eitherDoneMessageOrErrorState(
             failureOrDoneMessage, ADD_SUCCESS_MESSAGE));
-      }
-
-      else if (event is UpdatePostEvent) {
+      } else if (event is UpdatePostEvent) {
         emit(LoadingAddDeleteUpdatePostState());
 
         final failureOrDoneMessage = await updatePost(event.post);
 
         emit(_eitherDoneMessageOrErrorState(
             failureOrDoneMessage, UPDATE_SUCCESS_MESSAGE));
-      }
-
-      else if (event is DeletePostEvent) {
+      } else if (event is DeletePostEvent) {
         emit(LoadingAddDeleteUpdatePostState());
 
         final failureOrDoneMessage = await deletePost(event.postId);
 
         emit(_eitherDoneMessageOrErrorState(
             failureOrDoneMessage, DELETE_SUCCESS_MESSAGE));
-
       }
-
-    }
-
-
-    );
+    });
   }
-
 
   AddDeleteUpdatePostState _eitherDoneMessageOrErrorState(
       Either<Failure, Unit> either, String message) {
     return either.fold(
-          (failure) =>
-          ErrorAddDeleteUpdatePostState(
-            message: _mapFailureToMessage(failure),
-          ),
-          (_) => MesssageAddDeleteUpdatePostState(message: message),
-
+      (failure) => ErrorAddDeleteUpdatePostState(
+        message: _mapFailureToMessage(failure),
+      ),
+      (_) => MesssageAddDeleteUpdatePostState(message: message),
     );
   }
 
@@ -82,5 +71,4 @@ class AddDeleteUpdatePostBloc
         return 'Unexpected Error , Please try again later .';
     }
   }
-
 }
