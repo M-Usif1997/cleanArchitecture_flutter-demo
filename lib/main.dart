@@ -1,3 +1,4 @@
+import 'package:clean_architecture_posts_app/featutes/posts/presentation/pages/posts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,23 +21,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => di.sl<PostsBloc>()),
+        BlocProvider(create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
         BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
         title: 'Posts App',
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Posts'),
-          ),
-          body: Center(
-            child: Container(
-              child: const Text('Hello World'),
-            ),
-          ),
-        ),
+        home: const PostsPage(),
       ),
     );
   }
