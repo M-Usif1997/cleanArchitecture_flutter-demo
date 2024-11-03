@@ -47,7 +47,7 @@ class PostsRepositoryImpl implements PostsRepository {
 
 
     final PostModel postModel =
-        PostModel(id: post.id, title: post.title, body: post.body);
+        PostModel(title: post.title, body: post.body);
     return await  _getMessage(() => remoteDataSource.addPost(postModel));
   }
 

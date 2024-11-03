@@ -1,17 +1,17 @@
 import 'package:clean_architecture_posts_app/core/widgets/loading_widget.dart';
 import 'package:clean_architecture_posts_app/featutes/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import 'package:clean_architecture_posts_app/featutes/posts/presentation/pages/posts_page.dart';
-import 'package:clean_architecture_posts_app/featutes/posts/presentation/widgets/post_add_update_page/form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/post.dart';
+import '../widgets/post_add_update_page/form_widget.dart';
 
 class PostAddUpdatePage extends StatelessWidget {
-  final Post? post;
-  final bool isUpdatePost;
 
+  final bool isUpdatePost;
+  final Post? post;
   const PostAddUpdatePage({super.key, required this.isUpdatePost, this.post});
 
   @override
