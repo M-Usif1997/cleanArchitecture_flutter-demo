@@ -1,10 +1,11 @@
 import 'package:clean_architecture_posts_app/featutes/posts/presentation/bloc/posts/posts_bloc.dart';
-import 'package:clean_architecture_posts_app/featutes/posts/presentation/widgets/post_list_widget.dart';
+import 'package:clean_architecture_posts_app/featutes/posts/presentation/pages/post_add_update_page.dart';
+import 'package:clean_architecture_posts_app/featutes/posts/presentation/widgets/posts_page/post_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/loading_widget.dart';
-import '../widgets/message_display_widget.dart';
+import '../widgets/posts_page/message_display_widget.dart';
 
 class PostsPage extends StatelessWidget {
   const PostsPage({super.key});
@@ -14,7 +15,7 @@ class PostsPage extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppbar(),
       body: _buildBody(),
-      floatingActionButton: _buildFloatingActionBtn(),
+      floatingActionButton: _buildFloatingActionBtn(context),
     );
   }
 
@@ -29,7 +30,7 @@ class PostsPage extends StatelessWidget {
               return const LoadingWidget();
             } else if (state is LoadedPostsState) {
               return RefreshIndicator(
-                onRefresh: () => _onRefresh(context) ,
+                onRefresh: () => _onRefresh(context),
                 child: PostListWidget(
                   posts: state.posts,
                 ),
@@ -43,15 +44,18 @@ class PostsPage extends StatelessWidget {
   }
 
   Future<void> _onRefresh(BuildContext context) async {
-
     BlocProvider.of<PostsBloc>(context).add(RefreshPostEvent());
-
   }
 
-  Widget _buildFloatingActionBtn() {
+  Widget _buildFloatingActionBtn(BuildContext context) {
     return FloatingActionButton(
       child: const Icon(Icons.add),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => const PostAddUpdatePage(isUpdatePost: false)));
+      },
     );
   }
 }
