@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../app/routes/router.dart';
 import '../../../domain/entities/post.dart';
 import '../../pages/post_detail_page.dart';
+
 
 class PostListWidget extends StatelessWidget {
   const PostListWidget({super.key, required this.posts});
@@ -23,10 +26,12 @@ class PostListWidget extends StatelessWidget {
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => PostDetailPage(post: posts[index])));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (_) => PostDetailPage(post: posts[index])));
+
+              context.goNamed(AppRoute.postDetailPage.name, extra: posts[index]);
             },
           );
         },

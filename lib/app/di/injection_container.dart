@@ -3,16 +3,16 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/network/network_info.dart';
-import 'featutes/posts/data/datasources/post_local_data_source.dart';
-import 'featutes/posts/data/datasources/post_remote_data_source.dart';
-import 'featutes/posts/data/repositories/post_repository_impl.dart';
-import 'featutes/posts/domain/usecases/add_post.dart';
-import 'featutes/posts/domain/usecases/delete_post.dart';
-import 'featutes/posts/domain/usecases/get_all_posts.dart';
-import 'featutes/posts/domain/usecases/update_post.dart';
-import 'featutes/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
-import 'featutes/posts/presentation/bloc/posts/posts_bloc.dart';
+import '../../core/network/network_info.dart';
+import '../../featutes/posts/data/datasources/post_local_data_source.dart';
+import '../../featutes/posts/data/datasources/post_remote_data_source.dart';
+import '../../featutes/posts/data/repositories/post_repository_impl.dart';
+import '../../featutes/posts/domain/usecases/add_post.dart';
+import '../../featutes/posts/domain/usecases/delete_post.dart';
+import '../../featutes/posts/domain/usecases/get_all_posts.dart';
+import '../../featutes/posts/domain/usecases/update_post.dart';
+import '../../featutes/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import '../../featutes/posts/presentation/bloc/posts/posts_bloc.dart';
 import 'package:http/http.dart' as http;
 
 final sl = GetIt.instance;
