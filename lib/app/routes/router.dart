@@ -7,7 +7,6 @@ import '../../../../featutes/posts/presentation/pages/post_add_update_page.dart'
 import '../../../../featutes/posts/presentation/pages/post_detail_page.dart';
 import '../../../../featutes/posts/presentation/pages/posts_page.dart';
 import '../../featutes/posts/domain/entities/post.dart';
-import '../../featutes/posts/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import '../../../app/di/injection_container.dart' as di;
 
 enum AppRoute { postsPage, postsAddUpdatePage, postDetailPage }
@@ -15,7 +14,7 @@ enum AppRoute { postsPage, postsAddUpdatePage, postDetailPage }
 GoRouter goRouter() {
   return GoRouter(
     initialLocation: '/posts_page',
-    routes:[
+    routes: [
       GoRoute(
         path: '/posts_page',
         name: AppRoute.postsPage.name,
@@ -34,16 +33,8 @@ GoRouter goRouter() {
       GoRoute(
           path: '/post-detail',
           name: AppRoute.postDetailPage.name,
-          pageBuilder: (context, state) {
-            Post post = state.extra as Post;
-
-            return MaterialPage(
-                child: BlocProvider(
-                    create: (context) => di.sl<PostsBloc>(),
-                    child: PostDetailPage(
-                      post: post,
-                    )));
-          }),
+          builder: (context, state) =>
+              PostDetailPage(post: state.extra as Post)),
     ],
   );
 }
